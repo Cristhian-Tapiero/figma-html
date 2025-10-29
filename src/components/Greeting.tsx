@@ -34,26 +34,56 @@ export default function Greeting() {
                     </div>
                 )}
                 <div className="flex items-center justify-center grow">
-                    <div className="relative w-72 h-72 md:w-96 md:h-96 flex items-center justify-center">
-                        {/* background circle with darker orange shadow */}
-                        <div
-                            className={`rounded-full bg-conejera-orange shadow-[inset_0_-12px_24px_rgba(0,0,0,0.15),0_20px_40px_rgba(150,50,20,0.45)] transition-transform duration-700 ease-out ${expanded ? 'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' : 'absolute inset-0 -translate-y-1/4 animate-slide-up'}`}
-                                style={expanded ? { width: '18rem', height: '18rem', transform: 'translate(-50%,-50%) scale(40)', zIndex: 0 } : undefined}
-                        />
+                    <div className={`relative ${expanded ? 'w-full h-full' : 'w-72 h-72 md:w-96 md:h-96'} flex items-center justify-center`}>
+                        <div className={`flex items-center justify-center grow ${expanded ? 'w-full h-full' : ''}`}>
+                            {expanded ? (
+                                // full-screen two-column layout: left = garza, right = logo
+                                <div className="relative w-full h-full flex">
+                                    {/* scaled circle as centered background */}
+                                    <div
+                                        className="rounded-full bg-conejera-orange shadow-[inset_0_-12px_24px_rgba(0,0,0,0.15),0_20px_40px_rgba(150,50,20,0.45)] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                                        style={{ width: '18rem', height: '18rem', transform: 'translate(-50%,-50%) scale(40)', zIndex: 0 }}
+                                    />
 
-                        {/* logo that appears on the right when expanded */}
-                        <img
-                            src={logo}
-                            alt="Logo"
-                            className={`absolute top-1/2 transform -translate-y-1/2 transition-all duration-700 ease-out z-30 ${expanded ? 'right-0 opacity-100 w-[50vw] pr-8' : 'right-6 opacity-0 w-32 pointer-events-none'}`}
-                        />
+                                    <div className="w-1/2 h-full flex items-center justify-center">
+                                        <img
+                                            src={garza}
+                                            alt="Garza"
+                                            className="relative z-20 w-[75%] object-contain transform scale-x-[-1] translate-x-[-10%] translate-y-[8%] transition-transform duration-700 ease-out"
+                                        />
+                                    </div>
 
-                        {/* garza image centered above the circle and mirrored horizontally */}
-                        <img
-                            src={garza}
-                            alt="Garza"
-                            className={`relative z-20 w-[52rem] object-contain transform scale-x-[-1] transition-transform duration-700 ease-out ${expanded ? '-translate-x-[25vw] scale-125' : 'animate-slide-up-delay'}`}
-                        />
+                                    <div className="w-1/2 h-full flex items-center justify-center">
+                                        <img
+                                            src={logo}
+                                            alt="Logo"
+                                            className="relative z-30 w-[60%] object-contain transition-all duration-700 ease-out"
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="relative w-72 h-72 md:w-96 md:h-96 flex items-center justify-center">
+                                    {/* background circle with darker orange shadow */}
+                                    <div
+                                        className={`rounded-full bg-conejera-orange shadow-[inset_0_-12px_24px_rgba(0,0,0,0.15),0_20px_40px_rgba(150,50,20,0.45)] transition-transform duration-700 ease-out absolute inset-0 -translate-y-1/4 animate-slide-up`}
+                                    />
+
+                                    {/* logo that appears on the right when expanded */}
+                                    <img
+                                        src={logo}
+                                        alt="Logo"
+                                        className={`absolute right-6 top-1/2 transform -translate-y-1/2 transition-all duration-700 ease-out z-30 opacity-0 w-32 pointer-events-none`}
+                                    />
+
+                                    {/* garza image centered above the circle and mirrored horizontally */}
+                                    <img
+                                        src={garza}
+                                        alt="Garza"
+                                        className={`relative z-20 w-[52rem] object-contain transform scale-x-[-1] animate-slide-up-delay`}
+                                    />
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </main>
