@@ -2,16 +2,21 @@ import { useState } from 'react'
 import blueWave from '../assets/wave-blue.svg'
 import garza from '../assets/animals/garza.svg'
 import logo from '../assets/logo.svg'
+import Map from './Map'
 
 export default function Greeting() {
     const [expanded, setExpanded] = useState(false)
+    const [showMap, setShowMap] = useState(false)
 
     const handleStart = () => {
         setExpanded(true)
+        // after the animation/intro completes, show the Map component in-place
         setTimeout(() => {
-            window.location.href = '/map'
+            setShowMap(true)
         }, 4000)
     }
+
+    if (showMap) return <Map />
 
     return (
         <div className="w-screen h-screen bg-conejera-light_blue relative overflow-hidden flex items-center">
