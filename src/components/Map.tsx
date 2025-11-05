@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import botoncillo from '../assets/map_items/botoncillo.svg';
 import buchon_cuchartrita from '../assets/map_items/buchon_cucharita.svg';
 import carreton from '../assets/map_items/carreton.svg';
@@ -15,29 +16,57 @@ import pato from '../assets/map_items/pato.svg';
 import sombrilla from '../assets/map_items/sombrilla.svg';
 import tingua from '../assets/map_items/tingua.svg';
 import map from '../assets/map_items/map.svg';
-import logo from '../assets/logo.svg';
 import marker from '../assets/map_items/marker.svg';
+import Descriptions from './Descriptions';
+import { 
+    patoZambullidor, 
+    tinguaBogotana, 
+    gualolaRojiza, 
+    chuchaComun, 
+    buchonCucharita, 
+    garzaDelGanado, 
+    comadrejaColombiana, 
+    botoncilloAmarillo, 
+    lentejaDeAgua, 
+    carretonDeAgua, 
+    helechoDeAgua, 
+    cucaracheroDePantano, 
+    fochaAmericana, 
+    curiConejillo, 
+    ibisAfeitado, 
+    sombrillaDeAgua,
+    Animal,
+    Plant
+} from '../types/types';
 
 export default function Map() {
+    const [selectedSpecies, setSelectedSpecies] = useState<Animal | Plant | null>(null);
+
     // array of overlay icons with approximate positions (percentages)
+    // Ahora cada ícono está mapeado a su especie correspondiente
     const icons = [
-        { src: pato, alt: 'Pato', top: '25%', left: '5%' },
-        { src: tingua, alt: 'Tingua', top: '20%', left: '20%' },
-        { src: gualola, alt: 'Gualola', top: '6%', left: '35%' },
-        { src: chucha, alt: 'Chucha', top: '13%', left: '50%' },
-        { src: buchon_cuchartrita, alt: 'Buchon', top: '42%', left: '3%' },
-        { src: garza, alt: 'Garza', top: '33%', left: '20%' },
-        { src: comadreja, alt: 'Comadreja', top: '29%', left: '38%' },
-        { src: botoncillo, alt: 'Botoncillo', top: '28%', left: '62%' },
-        { src: lenteja_de_agua, alt: 'Lenteja de agua', top: '50%', left: '15%' },
-        { src: carreton, alt: 'Carretón', top: '47%', left: '30%' },
-        { src: helecho, alt: 'Helecho', top: '62%', left: '38%' },
-        { src: cucarachero, alt: 'Cucarachero', top: '50%', left: '52%' },
-        { src: focha, alt: 'Focha', top: '52%', left: '70%' },
-        { src: curi, alt: 'Curi', top: '56%', left: '87%' },
-        { src: ibis, alt: 'Ibis', top: '68%', left: '60%' },
-        { src: sombrilla, alt: 'Sombrilla', top: '85%', left: '50%' },
+        { src: pato, alt: 'Pato', top: '25%', left: '5%', species: patoZambullidor },
+        { src: tingua, alt: 'Tingua', top: '20%', left: '20%', species: tinguaBogotana },
+        { src: gualola, alt: 'Gualola', top: '6%', left: '35%', species: gualolaRojiza },
+        { src: chucha, alt: 'Chucha', top: '13%', left: '50%', species: chuchaComun },
+        { src: buchon_cuchartrita, alt: 'Buchon', top: '42%', left: '3%', species: buchonCucharita },
+        { src: garza, alt: 'Garza', top: '33%', left: '20%', species: garzaDelGanado },
+        { src: comadreja, alt: 'Comadreja', top: '29%', left: '38%', species: comadrejaColombiana },
+        { src: botoncillo, alt: 'Botoncillo', top: '28%', left: '62%', species: botoncilloAmarillo },
+        { src: lenteja_de_agua, alt: 'Lenteja de agua', top: '50%', left: '15%', species: lentejaDeAgua },
+        { src: carreton, alt: 'Carretón', top: '47%', left: '30%', species: carretonDeAgua },
+        { src: helecho, alt: 'Helecho', top: '62%', left: '38%', species: helechoDeAgua },
+        { src: cucarachero, alt: 'Cucarachero', top: '50%', left: '52%', species: cucaracheroDePantano },
+        { src: focha, alt: 'Focha', top: '52%', left: '70%', species: fochaAmericana },
+        { src: curi, alt: 'Curi', top: '56%', left: '87%', species: curiConejillo },
+        { src: ibis, alt: 'Ibis', top: '68%', left: '60%', species: ibisAfeitado },
+        { src: sombrilla, alt: 'Sombrilla', top: '85%', left: '50%', species: sombrillaDeAgua },
     ];
+
+    // Si hay una especie seleccionada, mostrar el componente Descriptions
+    if (selectedSpecies) {
+        return <Descriptions selectedSpecies={selectedSpecies} onBack={() => setSelectedSpecies(null)} />;
+    }
 
     return (
         <section className="w-screen mx-auto h-screen">
@@ -54,10 +83,7 @@ export default function Map() {
                                 aria-label={icon.alt}
                                 className="absolute size-24 hover:scale-110 transition"
                                 style={{ top: icon.top, left: icon.left }}
-                                onClick={() => {
-                                    // placeholder click handler — can be wired to modal or drawer
-                                    // console.log(`${icon.alt} clicked`);
-                                }}
+                                onClick={() => setSelectedSpecies(icon.species)}
                             >
                                 <img src={icon.src} alt={icon.alt} className="w-full h-full object-contain" />
                             </button>
