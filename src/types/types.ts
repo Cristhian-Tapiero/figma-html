@@ -49,6 +49,15 @@ import pato from '../assets/animals/pato.svg';
 import sombrilla from '../assets/plants/sombrilla.svg';
 import tingua from '../assets/animals/tingua.svg';
 
+// Sonidos de animales
+import sound_chucha from '../assets/animals/sounds/chucha.mp3';
+import sound_cucarachero from '../assets/animals/sounds/cucarachero.mp3';
+import sound_curi from '../assets/animals/sounds/curi.mp3';
+import sound_focha from '../assets/animals/sounds/focha.mp3';
+import sound_ibis from '../assets/animals/sounds/ibis.mp3';
+import sound_pato from '../assets/animals/sounds/pato.mp3';
+import sound_tingua from '../assets/animals/sounds/tingua.mp3';
+
 // Clases base para animales y plantas
 export class Animal {
     public name: string;
@@ -57,11 +66,23 @@ export class Animal {
     public image: any;
     public icon: any;
     public drawing: any;
-    public sound: string;
+    public sound?: string; // Ahora es opcional
+    public soundFile?: any; // Archivo de audio real
     public type: 'mammal' | 'bird';
     public orientation: 'left' | 'right' = 'right';
 
-    constructor(name: string, scientificName: string, description: string, sound: string, type: 'mammal' | 'bird', image: any, icon: any, drawing: any, orientation: 'left' | 'right' = 'right') {
+    constructor(
+        name: string, 
+        scientificName: string, 
+        description: string, 
+        sound: string, 
+        type: 'mammal' | 'bird', 
+        image: any, 
+        icon: any, 
+        drawing: any, 
+        orientation: 'left' | 'right' = 'right',
+        soundFile?: any
+    ) {
         this.name = name;
         this.scientificName = scientificName;
         this.description = description;
@@ -71,6 +92,7 @@ export class Animal {
         this.icon = icon;
         this.drawing = drawing;
         this.orientation = orientation;
+        this.soundFile = soundFile;
     }
 }
 
@@ -107,7 +129,9 @@ export const garzaDelGanado = new Animal(
     'bird',
     garza_real,
     garza_square,
-    garza
+    garza,
+    'right',
+    undefined // No tiene sonido
 );
 
 export const fochaAmericana = new Animal(
@@ -119,7 +143,8 @@ export const fochaAmericana = new Animal(
     focha_real,
     focha_square,
     focha,
-    'left'
+    'left',
+    sound_focha
 );
 
 export const ibisAfeitado = new Animal(
@@ -130,7 +155,9 @@ export const ibisAfeitado = new Animal(
     'bird',
     ibis_real,
     ibis_square,
-    ibis
+    ibis,
+    'right',
+    sound_ibis
 );
 
 export const tinguaBogotana = new Animal(
@@ -142,7 +169,8 @@ export const tinguaBogotana = new Animal(
     tingua_real,
     tingua_square,
     tingua,
-    'left'
+    'left',
+    sound_tingua
 );
 
 export const cucaracheroDePantano = new Animal(
@@ -153,7 +181,9 @@ export const cucaracheroDePantano = new Animal(
     'bird',
     cucarachero_real,
     cucarachero_square,
-    cucarachero
+    cucarachero,
+    'right',
+    sound_cucarachero
 );
 
 export const patoZambullidor = new Animal(
@@ -165,7 +195,8 @@ export const patoZambullidor = new Animal(
     pato_real,
     pato_square,
     pato,
-    'left'
+    'left',
+    sound_pato
 );
 
 export const curiConejillo = new Animal(
@@ -176,7 +207,9 @@ export const curiConejillo = new Animal(
     'mammal',
     curi_real,
     curi_square,
-    curi
+    curi,
+    'right',
+    sound_curi
 );
 
 export const chuchaComun = new Animal(
@@ -188,7 +221,8 @@ export const chuchaComun = new Animal(
     chucha_real,
     chucha_square,
     chucha,
-    'left'
+    'left',
+    sound_chucha
 );
 
 export const comadrejaColombiana = new Animal(
@@ -200,6 +234,8 @@ export const comadrejaColombiana = new Animal(
     comadreja_real,
     comadreja_square,
     comadreja,
+    'right',
+    undefined // No tiene sonido
 );
 
 // Instancias de plantas del humedal

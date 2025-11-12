@@ -33,7 +33,7 @@ export default function Greeting() {
                     </p>
                     <button
                         onClick={handleStart}
-                        className='bg-conejera-dark_blue text-conejera-orange text-4xl font-extrabold py-4 px-6 rounded-full shadow-xl hover:bg-conejera-orange/20 transition-colors max-w-max'
+                        className='bg-conejera-dark_blue text-conejera-orange text-4xl font-extrabold py-4 px-6 rounded-full shadow-xl hover:bg-conejera-orange/20 transition-colors max-w-max z-40'
                     >
                         Comenzar
                     </button>

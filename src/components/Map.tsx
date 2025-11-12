@@ -18,22 +18,23 @@ import tingua from '../assets/map_items/tingua.svg';
 import map from '../assets/map_items/map.svg';
 import marker from '../assets/map_items/marker.svg';
 import Descriptions from './Descriptions';
-import { 
-    patoZambullidor, 
-    tinguaBogotana, 
-    gualolaRojiza, 
-    chuchaComun, 
-    buchonCucharita, 
-    garzaDelGanado, 
-    comadrejaColombiana, 
-    botoncilloAmarillo, 
-    lentejaDeAgua, 
-    carretonDeAgua, 
-    helechoDeAgua, 
-    cucaracheroDePantano, 
-    fochaAmericana, 
-    curiConejillo, 
-    ibisAfeitado, 
+import Minigames from './Minigames';
+import {
+    patoZambullidor,
+    tinguaBogotana,
+    gualolaRojiza,
+    chuchaComun,
+    buchonCucharita,
+    garzaDelGanado,
+    comadrejaColombiana,
+    botoncilloAmarillo,
+    lentejaDeAgua,
+    carretonDeAgua,
+    helechoDeAgua,
+    cucaracheroDePantano,
+    fochaAmericana,
+    curiConejillo,
+    ibisAfeitado,
     sombrillaDeAgua,
     Animal,
     Plant
@@ -41,6 +42,7 @@ import {
 
 export default function Map() {
     const [selectedSpecies, setSelectedSpecies] = useState<Animal | Plant | null>(null);
+    const [showMinigames, setShowMinigames] = useState(false);
 
     // array of overlay icons with approximate positions (percentages)
     // Ahora cada ícono está mapeado a su especie correspondiente
@@ -66,6 +68,11 @@ export default function Map() {
     // Si hay una especie seleccionada, mostrar el componente Descriptions
     if (selectedSpecies) {
         return <Descriptions selectedSpecies={selectedSpecies} onBack={() => setSelectedSpecies(null)} />;
+    }
+
+    // Si se activaron los minijuegos, mostrar el componente Minigames
+    if (showMinigames) {
+        return <Minigames onBack={() => setShowMinigames(false)} />;
     }
 
     return (
@@ -110,7 +117,6 @@ export default function Map() {
                     </header>
 
                     <div>
-                        <p className="text-sm text-gray-600 font-montserrat">Minijuegos</p>
                         <div className="mt-4 space-y-3 text-right">
                             <LegendItem label="Aves" color="conejera-light_blue" />
                             <LegendItem label="Flores" color="conejera-medium_green" />
@@ -120,7 +126,11 @@ export default function Map() {
                     </div>
 
                     <div className="flex items-center justify-end mt-6">
-                        <button className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-conejera-light_blue flex items-center justify-center text-conejera-light_blue hover:bg-conejera-light_blue/10 transition">
+                        <button 
+                            onClick={() => setShowMinigames(true)}
+                            className="h-12 md:h-14 gap-4 px-4 rounded-full border-2 border-conejera-light_blue flex items-center justify-center text-conejera-light_blue hover:bg-conejera-light_blue/10 transition"
+                        >
+                            Minijuegos
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 5v14M5 12h14" stroke="#1A659E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
