@@ -202,7 +202,7 @@ function QuestionView({ question, onAdvance, onPlaySound }: { question: Question
         return (
             <div className="flex flex-col items-center gap-8 max-w-2xl">
                 <h2 className="text-5xl font-fredoka font-bold text-conejera-dark_blue text-center">
-                    ¿Qué animal hace este sonido?
+                    ¿Qué animal crees que es?
                 </h2>
                 
                 <button
@@ -246,7 +246,7 @@ function QuestionView({ question, onAdvance, onPlaySound }: { question: Question
         return (
             <div className="flex flex-col items-center gap-8 max-w-4xl w-full">
                 <h2 className="text-5xl font-fredoka font-bold text-conejera-dark_blue text-center">
-                    ¿Qué planta es?
+                    ¿Qué planta crees que es?
                 </h2>
                 
                 <p className="text-2xl font-montserrat text-conejera-dark_blue text-center">
@@ -334,12 +334,12 @@ function FeedbackView({ isCorrect, correctSpecies, onNext, isLastQuestion }: {
     return (
         <div className="flex flex-col items-center gap-8 max-w-2xl">
             {/* Texto superior */}
-            <h2 className={`text-6xl font-fredoka font-bold text-center ${isCorrect ? 'text-conejera-emerald' : 'text-conejera-orange'}`}>
+            <h2 className={`text-6xl font-fredoka font-bold text-center text-conejera-dark_blue`}>
                 {isCorrect ? '¡Adivinaste!' : 'Inténtalo de nuevo :('}
             </h2>
 
             {/* Ícono correcto en el centro */}
-            <div className="rounded-3xl shadow-2xl">
+            <div>
                 <img 
                     src={correctSpecies.icon} 
                     alt={correctSpecies.name}
@@ -348,7 +348,7 @@ function FeedbackView({ isCorrect, correctSpecies, onNext, isLastQuestion }: {
             </div>
 
             {/* Texto inferior */}
-            <p className="text-4xl font-fredoka text-conejera-dark_blue text-center">
+            <p className="text-6xl font-fredoka font-bold text-center text-conejera-dark_blue">
                 {isCorrect ? '¡Felicidades!' : 'Esta era la respuesta'}
             </p>
 
