@@ -306,7 +306,11 @@ export const helechoDeAgua = new Plant(
     'Azolla filiculoides',
     'Planta herbácea invasora de humedales mide 20-80 cm, con tallo rojizo, hojas lanceoladas y flores coralinas, se reproduce por semillas y rizomas, sus propiedades alelopáticas inhiben el crecimiento de otras planta, se usa medicinalmente para hemorroides y como ornamental, pero puede afectar la biodiversidad acuática.',
     'tree',
-    ['Wetland', 'Bird'],
+    [
+        'Soy una planta invasora con tallo rojizo característico.',
+        'Mis propiedades especiales pueden inhibir el crecimiento de otras plantas.',
+        'Me llaman "Azolla filiculoides" y tengo usos medicinales.'
+    ],
     helecho_real,
     helecho_square,
     helecho

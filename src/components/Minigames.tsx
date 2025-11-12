@@ -207,7 +207,7 @@ function QuestionView({ question, onAdvance, onPlaySound }: { question: Question
                 
                 <button
                     onClick={onPlaySound}
-                    className="w-48 h-48 rounded-full bg-conejera-light_blue hover:bg-conejera-dark_blue transition-colors shadow-xl flex items-center justify-center group"
+                    className="size-52 rounded-[3rem] bg-conejera-light_blue hover:bg-conejera-dark_blue transition-colors shadow-xl flex items-center justify-center group"
                     aria-label="Reproducir sonido"
                 >
                     <svg 
@@ -305,7 +305,7 @@ function OptionsView({ options, onSelect }: { options: (Animal | Plant)[]; onSel
                 Selecciona la respuesta correcta
             </h2>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-6">
                 {options.map((option, index) => (
                     <button
                         key={index}
@@ -315,7 +315,7 @@ function OptionsView({ options, onSelect }: { options: (Animal | Plant)[]; onSel
                         <img 
                             src={option.icon} 
                             alt={option.name}
-                            className="object-contain h-48" 
+                            className="object-contain h-64" 
                         />
                     </button>
                 ))}
