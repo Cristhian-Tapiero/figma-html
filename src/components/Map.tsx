@@ -118,10 +118,10 @@ export default function Map() {
 
                     <div>
                         <div className="mt-4 space-y-3 text-right">
-                            <LegendItem label="Aves" color="conejera-light_blue" />
-                            <LegendItem label="Flores" color="conejera-medium_green" />
+                            <LegendItem label="Aves" color="conejera-cyan" />
+                            <LegendItem label="Flores" color="conejera-dark_green" />
                             <LegendItem label="Plantas" color="conejera-light_green" />
-                            <LegendItem label="Mamíferos" color="conejera-emerald" />
+                            <LegendItem label="Mamíferos" color="conejera-light_blue" />
                         </div>
                     </div>
 
