@@ -201,19 +201,19 @@ export default function Minigames({ onBack }: MinigamesProps) {
 function QuestionView({ question, onAdvance, onPlaySound }: { question: Question; onAdvance: () => void; onPlaySound: () => void }) {
     if (question.isAnimal) {
         return (
-            <div className="w-[90%] h-[90%] bg-white rounded-3xl shadow-2xl p-12 flex flex-col items-center justify-center gap-8">
-                <h2 className="text-5xl font-fredoka font-bold text-conejera-dark_blue text-center">
+            <div className="w-[90%] h-[90%] bg-white rounded-3xl shadow-2xl px-12 py-7 flex flex-col items-center justify-center gap-12">
+                <h2 className="text-8xl font-fredoka font-bold text-conejera-dark_blue text-center">
                     ¿Qué animal crees que es?
                 </h2>
                 
                 <button
                     onClick={onPlaySound}
-                    className="size-52 rounded-[3rem] bg-conejera-light_blue hover:bg-conejera-dark_blue transition-colors shadow-xl flex items-center justify-center group"
+                    className="size-64 rounded-[3rem] bg-conejera-orange hover:bg-conejera-orange/90 transition-colors shadow-xl flex items-center justify-center group"
                     aria-label="Reproducir sonido"
                 >
                     <svg 
-                        width="80" 
-                        height="80" 
+                        width="150" 
+                        height="150" 
                         viewBox="0 0 24 24" 
                         fill="none" 
                         xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +246,7 @@ function QuestionView({ question, onAdvance, onPlaySound }: { question: Question
         const plant = question.species as Plant;
         return (
             <div className="w-[90%] h-[90%] bg-white rounded-3xl shadow-2xl p-12 flex flex-col items-center justify-center gap-8">
-                <h2 className="text-5xl font-fredoka font-bold text-conejera-dark_blue text-center">
+                <h2 className="text-8xl font-fredoka font-bold text-conejera-dark_blue text-center">
                     ¿Qué planta crees que es?
                 </h2>
                 

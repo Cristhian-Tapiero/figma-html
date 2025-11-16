@@ -58,6 +58,25 @@ import sound_ibis from '../assets/animals/sounds/ibis.mp3';
 import sound_pato from '../assets/animals/sounds/pato.mp3';
 import sound_tingua from '../assets/animals/sounds/tingua.mp3';
 
+// Lecturas de animales y plantas
+import reading_garza from '../assets/animals/readings/garza.mp4';
+import reading_cucha from '../assets/animals/readings/chucha.mp4';
+import reading_comadreja from '../assets/animals/readings/comadreja.mp4';
+import reading_cucarachero from '../assets/animals/readings/cucarachero.mp4';
+import reading_curi from '../assets/animals/readings/curi.mp4';
+import reading_focha from '../assets/animals/readings/focha.mp4';
+import reading_ibis from '../assets/animals/readings/ibis.mp4';
+import reading_pato from '../assets/animals/readings/pato.mp4';
+import reading_tingua from '../assets/animals/readings/tingua.mp4';
+import reading_botoncillo from '../assets/plants/readings/botoncillo.mp4';
+import reading_buchon from '../assets/plants/readings/buchon_cucharita.mp4';
+import reading_carreton from '../assets/plants/readings/carreton.mp4';
+import reading_gualola from '../assets/plants/readings/gualola.mp4';
+import reading_helecho from '../assets/plants/readings/helecho.mp4';
+import reading_lenteja_de_agua from '../assets/plants/readings/lenteja_de_agua.mp4';
+import reading_sombrilla from '../assets/plants/readings/sombrilla.mp4';
+
+
 // Clases base para animales y plantas
 export class Animal {
     public name: string;
@@ -68,6 +87,7 @@ export class Animal {
     public drawing: any;
     public sound?: string; // Ahora es opcional
     public soundFile?: any; // Archivo de audio real
+    public reading?: any;
     public type: 'mammal' | 'bird';
     public orientation: 'left' | 'right' = 'right';
 
@@ -81,7 +101,8 @@ export class Animal {
         icon: any, 
         drawing: any, 
         orientation: 'left' | 'right' = 'right',
-        soundFile?: any
+        soundFile?: any,
+        reading?: any
     ) {
         this.name = name;
         this.scientificName = scientificName;
@@ -93,6 +114,7 @@ export class Animal {
         this.drawing = drawing;
         this.orientation = orientation;
         this.soundFile = soundFile;
+        this.reading = reading;
     }
 }
 
@@ -106,8 +128,9 @@ export class Plant {
     public icon: any;
     public drawing: any;
     public orientation: 'left' | 'right' = 'right';
+    public reading?: any;
 
-    constructor(name: string, scientificName: string, description: string, type: 'flower' | 'tree', hints: string[], image: any, icon: any, drawing: any, orientation: 'left' | 'right' = 'right') {
+    constructor(name: string, scientificName: string, description: string, type: 'flower' | 'tree', hints: string[], image: any, icon: any, drawing: any, orientation: 'left' | 'right' = 'right', reading?: any) {
         this.name = name;
         this.scientificName = scientificName;
         this.description = description;
@@ -117,6 +140,7 @@ export class Plant {
         this.icon = icon;
         this.drawing = drawing;
         this.orientation = orientation;
+        this.reading = reading;
     }
 }
 
@@ -131,7 +155,8 @@ export const garzaDelGanado = new Animal(
     garza_square,
     garza,
     'right',
-    undefined // No tiene sonido
+    undefined, // No tiene sonido
+    reading_garza
 );
 
 export const fochaAmericana = new Animal(
@@ -144,7 +169,8 @@ export const fochaAmericana = new Animal(
     focha_square,
     focha,
     'left',
-    sound_focha
+    sound_focha,
+    reading_focha
 );
 
 export const ibisAfeitado = new Animal(
@@ -157,7 +183,8 @@ export const ibisAfeitado = new Animal(
     ibis_square,
     ibis,
     'right',
-    sound_ibis
+    sound_ibis,
+    reading_ibis
 );
 
 export const tinguaBogotana = new Animal(
@@ -170,7 +197,8 @@ export const tinguaBogotana = new Animal(
     tingua_square,
     tingua,
     'left',
-    sound_tingua
+    sound_tingua,
+    reading_tingua
 );
 
 export const cucaracheroDePantano = new Animal(
@@ -183,7 +211,8 @@ export const cucaracheroDePantano = new Animal(
     cucarachero_square,
     cucarachero,
     'right',
-    sound_cucarachero
+    sound_cucarachero,
+    reading_cucarachero
 );
 
 export const patoZambullidor = new Animal(
@@ -196,7 +225,8 @@ export const patoZambullidor = new Animal(
     pato_square,
     pato,
     'left',
-    sound_pato
+    sound_pato,
+    reading_pato
 );
 
 export const curiConejillo = new Animal(
@@ -209,7 +239,8 @@ export const curiConejillo = new Animal(
     curi_square,
     curi,
     'right',
-    sound_curi
+    sound_curi,
+    reading_curi
 );
 
 export const chuchaComun = new Animal(
@@ -222,7 +253,8 @@ export const chuchaComun = new Animal(
     chucha_square,
     chucha,
     'left',
-    sound_chucha
+    sound_chucha,
+    reading_cucha
 );
 
 export const comadrejaColombiana = new Animal(
@@ -235,7 +267,8 @@ export const comadrejaColombiana = new Animal(
     comadreja_square,
     comadreja,
     'right',
-    undefined // No tiene sonido
+    undefined, // No tiene sonido
+    reading_comadreja
 );
 
 // Instancias de plantas del humedal
@@ -251,7 +284,9 @@ export const buchonCucharita = new Plant(
     ],
     buchon_cucharita_real,
     buchon_cucharita_square,
-    buchon_cucharita
+    buchon_cucharita,
+    'right',
+    reading_buchon
 );
 
 export const carretonDeAgua = new Plant(
@@ -267,7 +302,8 @@ export const carretonDeAgua = new Plant(
     carreton_real,
     carreton_square,
     carreton,
-    'left'
+    'left',
+    reading_carreton
 );
 
 export const botoncilloAmarillo = new Plant(
@@ -278,11 +314,13 @@ export const botoncilloAmarillo = new Plant(
     [
         'Forma parte de las plantas que indican un humedal saludable.', 
         'Crezco en humedales y a orillas de ríos',
-        'Me llaman “Bidens laevis”'
+        'Me llaman "Bidens laevis"'
     ],
     botoncillo_real,
     botoncillo_square,
-    botoncillo
+    botoncillo,
+    'right',
+    reading_botoncillo
 );
 
 export const gualolaRojiza = new Plant(
@@ -298,7 +336,8 @@ export const gualolaRojiza = new Plant(
     gualola_real,
     gualola_square,
     gualola,
-    'left'
+    'left',
+    reading_gualola
 );
 
 export const helechoDeAgua = new Plant(
@@ -313,7 +352,9 @@ export const helechoDeAgua = new Plant(
     ],
     helecho_real,
     helecho_square,
-    helecho
+    helecho,
+    'right',
+    reading_helecho
 );
 
 export const lentejaDeAgua = new Plant(
@@ -324,12 +365,13 @@ export const lentejaDeAgua = new Plant(
     [
         'En algunos lugares se usa en jardinería acuática.', 
         'Floto formando densas alfombras verdes',
-        'Me llaman “Lemna gibba”'
+        'Me llaman "Lemna gibba"'
     ],
     lenteja_de_agua_real,
     lenteja_de_agua_square,
     lenteja_de_agua,
-    'left'
+    'left',
+    reading_lenteja_de_agua
 );
 
 export const sombrillaDeAgua = new Plant(
@@ -340,11 +382,13 @@ export const sombrillaDeAgua = new Plant(
     [
         'Es valorada por su capacidad para cubrir y proteger espacios en el agua.', 
         'Me adapto muy bien a zonas húmedas y cuerpos de agua dulce',
-        'Soy llamada “Hydrocotyle ranunculoides”'
+        'Soy llamada "Hydrocotyle ranunculoides"'
     ],
     sombrilla_real,
     sombrilla_square,
-    sombrilla
+    sombrilla,
+    'right',
+    reading_sombrilla
 );
 
 // Arrays para facilitar iteración en componentes
