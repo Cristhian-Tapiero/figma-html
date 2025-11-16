@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Animal, Plant, allAnimals, allPlants } from '../types/types';
+import Descriptions from './Descriptions';
 import garzaImage from '../assets/animals/garza.svg';
 import qrImage from '../assets/qr.png';
+import blueWave from '../assets/wave-blue.svg';
 
 interface MinigamesProps {
     onBack: () => void;
@@ -136,30 +138,29 @@ export default function Minigames({ onBack }: MinigamesProps) {
     }
 
     return (
-        <section className="w-screen h-screen bg-conejera-bone relative overflow-hidden">
+        <section className="w-screen h-screen bg-conejera-dark_blue relative overflow-hidden">
             <audio ref={audioRef} />
             
-            {/* Botón volver - solo mostrar en pregunta, opciones y feedback */}
-            {(gameState === 'question' || gameState === 'options' || gameState === 'feedback') && (
-                <button
-                    onClick={onBack}
-                    className="absolute top-8 left-8 z-20 px-6 py-3 bg-white/80 backdrop-blur-sm text-conejera-dark_blue font-fredoka text-xl rounded-full hover:bg-white transition-colors shadow-lg"
-                >
-                    ← Volver
-                </button>
-            )}
-
-            {/* Progreso - solo mostrar en pregunta, opciones y feedback */}
-            {(gameState === 'question' || gameState === 'options' || gameState === 'feedback') && (
-                <div className="absolute top-8 right-8 z-20 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
-                    <span className="font-fredoka text-xl text-conejera-dark_blue">
-                        Pregunta {currentQuestionIndex + 1} de {questions.length}
-                    </span>
-                </div>
-            )}
-
             {/* Contenido principal */}
-            <div className="flex items-center justify-center h-full p-8">
+            <div className="flex items-center justify-center h-full p-8 relative">
+                {/* Botón volver - solo mostrar en pregunta, opciones y feedback */}
+                {(gameState === 'question' || gameState === 'options' || gameState === 'feedback') && (
+                    <button
+                        onClick={onBack}
+                        className="absolute top-[5%] left-[5%] z-20 px-6 py-3 bg-white backdrop-blur-sm text-conejera-dark_blue font-fredoka text-xl rounded-full hover:bg-white transition-colors shadow-lg border border-conejera-dark_blue"
+                    >
+                        ← Volver
+                    </button>
+                )}
+
+                {/* Progreso - solo mostrar en pregunta, opciones y feedback */}
+                {(gameState === 'question' || gameState === 'options' || gameState === 'feedback') && (
+                    <div className="absolute top-[5%] right-[5%] z-20 bg-white backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-conejera-dark_blue">
+                        <span className="font-fredoka text-xl text-conejera-dark_blue">
+                            Pregunta {currentQuestionIndex + 1} de {questions.length}
+                        </span>
+                    </div>
+                )}
                 {gameState === 'question' && (
                     <QuestionView
                         question={currentQuestion}
@@ -200,7 +201,7 @@ export default function Minigames({ onBack }: MinigamesProps) {
 function QuestionView({ question, onAdvance, onPlaySound }: { question: Question; onAdvance: () => void; onPlaySound: () => void }) {
     if (question.isAnimal) {
         return (
-            <div className="flex flex-col items-center gap-8 max-w-2xl">
+            <div className="w-[90%] h-[90%] bg-white rounded-3xl shadow-2xl p-12 flex flex-col items-center justify-center gap-8">
                 <h2 className="text-5xl font-fredoka font-bold text-conejera-dark_blue text-center">
                     ¿Qué animal crees que es?
                 </h2>
@@ -244,16 +245,39 @@ function QuestionView({ question, onAdvance, onPlaySound }: { question: Question
         // Planta - mostrar hints
         const plant = question.species as Plant;
         return (
-            <div className="flex flex-col items-center gap-8 max-w-4xl w-full">
+            <div className="w-[90%] h-[90%] bg-white rounded-3xl shadow-2xl p-12 flex flex-col items-center justify-center gap-8">
                 <h2 className="text-5xl font-fredoka font-bold text-conejera-dark_blue text-center">
                     ¿Qué planta crees que es?
                 </h2>
                 
-                <p className="text-2xl font-montserrat text-conejera-dark_blue text-center">
-                    Pasa el cursor sobre las tarjetas para ver las pistas
-                </p>
+                <div className="flex items-center gap-3 bg-conejera-cyan/20 px-6 py-3 rounded-full">
+                    <svg 
+                        width="32" 
+                        height="32" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="text-conejera-dark_blue"
+                    >
+                        <path 
+                            d="M12 2C11.4477 2 11 2.44772 11 3V6C11 6.55228 11.4477 7 12 7C12.5523 7 13 6.55228 13 6V3C13 2.44772 12.5523 2 12 2Z" 
+                            fill="currentColor"
+                        />
+                        <path 
+                            d="M12 17C11.4477 17 11 17.4477 11 18V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V18C13 17.4477 12.5523 17 12 17Z" 
+                            fill="currentColor"
+                        />
+                        <path 
+                            d="M7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12Z" 
+                            fill="currentColor"
+                        />
+                    </svg>
+                    <p className="text-xl font-montserrat text-conejera-dark_blue">
+                        Pon el cursor encima de las pistas para revelar su contenido
+                    </p>
+                </div>
 
-                <div className="flex flex-col gap-6 w-full">
+                <div className="flex flex-col gap-6 w-full max-w-3xl">
                     {plant.hints.map((hint, index) => (
                         <HintCard key={index} hint={hint} index={index} />
                     ))}
@@ -300,7 +324,7 @@ function HintCard({ hint, index }: { hint: string; index: number }) {
 // Componente para mostrar las opciones
 function OptionsView({ options, onSelect }: { options: (Animal | Plant)[]; onSelect: (option: Animal | Plant) => void }) {
     return (
-        <div className="flex flex-col items-center gap-8 max-w-5xl w-full">
+        <div className="w-[80%] h-[80%] bg-white rounded-3xl shadow-2xl p-12 flex flex-col items-center justify-center gap-8">
             <h2 className="text-5xl font-fredoka font-bold text-conejera-dark_blue text-center">
                 Selecciona la respuesta correcta
             </h2>
@@ -331,21 +355,35 @@ function FeedbackView({ isCorrect, correctSpecies, onNext, isLastQuestion }: {
     onNext: () => void;
     isLastQuestion: boolean;
 }) {
+    const [showDetails, setShowDetails] = useState(false);
+
+    if (showDetails) {
+        return (
+            <div className="fixed inset-0 z-50 w-screen h-screen">
+                <Descriptions selectedSpecies={correctSpecies} onBack={() => setShowDetails(false)} />
+            </div>
+        );
+    }
+
     return (
-        <div className="flex flex-col items-center gap-8 max-w-2xl">
+        <div className="w-[90%] h-[90%] bg-white rounded-3xl shadow-2xl p-12 flex flex-col items-center justify-center gap-8">
             {/* Texto superior */}
             <h2 className={`text-6xl font-fredoka font-bold text-center text-conejera-dark_blue`}>
                 {isCorrect ? '¡Adivinaste!' : 'Inténtalo de nuevo :('}
             </h2>
 
-            {/* Ícono correcto en el centro */}
-            <div>
+            {/* Ícono correcto en el centro - clickeable */}
+            <button 
+                onClick={() => setShowDetails(true)}
+                className="cursor-pointer hover:scale-105 transition-transform"
+                aria-label="Ver más detalles"
+            >
                 <img 
                     src={correctSpecies.icon} 
                     alt={correctSpecies.name}
                     className="w-96 h-96 object-contain"
                 />
-            </div>
+            </button>
 
             {/* Texto inferior */}
             <p className="text-6xl font-fredoka font-bold text-center text-conejera-dark_blue">
@@ -412,8 +450,15 @@ function ScoreView({ score, total, onContinue }: { score: number; total: number;
 // Componente de agradecimientos
 function ThanksView() {
     return (
-        <section className="w-screen h-screen bg-white flex items-center justify-center p-8 md:p-12">
-            <div className="max-w-7xl w-full flex flex-col md:flex-row gap-8 md:gap-28 items-center">
+        <section className="w-screen h-screen bg-conejera-light_blue relative overflow-hidden flex items-center justify-center p-8 md:p-12">
+            {/* Onda azul de fondo */}
+            <img 
+                src={blueWave} 
+                alt="Onda decorativa" 
+                className="absolute bottom-0 left-0 w-full h-auto object-cover z-0 opacity-30"
+            />
+            
+            <div className="max-w-7xl w-full flex flex-col md:flex-row gap-8 md:gap-28 items-center relative z-10">
                 {/* Imagen de la garza a la izquierda */}
                 <div className="w-full md:w-1/3">
                     <img 
@@ -437,7 +482,7 @@ function ThanksView() {
                         
                         <div className="flex-grow text-right">
                             <h1 className="text-4xl md:text-6xl font-fredoka font-bold leading-tight">
-                                <span className="text-conejera-dark_blue">Visita el</span>
+                                <span className="text-white">Visita el</span>
                                 <br />
                                 <span className="text-conejera-orange text-8xl">Humedal</span>
                             </h1>
@@ -445,7 +490,7 @@ function ThanksView() {
                     </div>
 
                     {/* Texto informativo */}
-                    <p className="text-lg font-montserrat text-conejera-dark_blue text-right leading-relaxed">
+                    <p className="text-lg font-montserrat text-white text-right leading-relaxed">
                         Si deseas visitarlo, puedes encontrar senderos naturales y miradores estratégicos para la observación de fauna y flora. Se recomienda programar un recorrido previamente, ya que el horario de ingreso y recorridos guiados a los ecosistemas son los días lunes, miércoles y viernes de 8:00 a 9:30, de 10:00 a 12:00 y de 12:00 a 2:00 de la tarde. Los sábados solo se hace un recorrido en la mañana.
                     </p>
 
@@ -455,7 +500,7 @@ function ThanksView() {
                             href="https://www.ambientebogota.gov.co/web/sda/caminatas-ecologicas" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="inline-block font-fredoka text-lg md:text-xl underline underline-offset-4 hover:scale-105 transition-transform text-conejera-dark_blue"
+                            className="inline-block font-fredoka text-lg md:text-xl underline underline-offset-4 hover:scale-105 transition-transform text-white"
                         >
                             Clic aquí para ingresar a los formularios o escanea el QR
                         </a>
